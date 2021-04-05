@@ -7,20 +7,27 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckArithmeticOperations {
+    WebDriver driver;
+    WebDriverWait wait;
 
     @Test
     public void checkArithmeticOperations() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_89.0.4389.23");
 
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 2);
         driver.get("http://google.com");
 
         WebElement editingViewPort;
         editingViewPort = driver.findElement(By.cssSelector("input"));
         editingViewPort.sendKeys("калькулятор");
         editingViewPort.sendKeys(Keys.ENTER);
+
+       //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("span[jsname=\"VssY5c\"]")));
 
         driver.findElement(By.cssSelector("div[aria-label=\"открывающая скобка\"]")).click();
         driver.findElement(By.cssSelector("div[jsname=\"N10B9\"]")).click();//1
