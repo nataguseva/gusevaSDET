@@ -1,4 +1,4 @@
-package case1;
+package checkCalc;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,19 +7,18 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 
 public class CheckArithmeticOperations {
     WebDriver driver;
-    WebDriverWait wait;
 
     @Test
     public void checkArithmeticOperations() {
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_89.0.4389.23");
 
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 2);
         driver.get("http://google.com");
 
         WebElement editingViewPort;
@@ -27,7 +26,6 @@ public class CheckArithmeticOperations {
         editingViewPort.sendKeys("калькулятор");
         editingViewPort.sendKeys(Keys.ENTER);
 
-       //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("span[jsname=\"VssY5c\"]")));
 
         driver.findElement(By.cssSelector("div[aria-label=\"открывающая скобка\"]")).click();
         driver.findElement(By.cssSelector("div[jsname=\"N10B9\"]")).click();//1
@@ -46,12 +44,11 @@ public class CheckArithmeticOperations {
 
 
 
-        String note = driver.findElement(By.cssSelector("span[jsname=\"ubtiRe\"]")).getText();
-        System.out.println(note);
+         String note = driver.findElement(By.cssSelector("span[jsname=\"ubtiRe\"]")).getText();
          assert note.equals("(1 + 2) × 3 - 40 ÷ 5 =");
+
          String result = driver.findElement(By.cssSelector("span[jsname=\"VssY5c\"]")).getText();
          assert "1".equals(result);
-
 
         driver.quit();
     }

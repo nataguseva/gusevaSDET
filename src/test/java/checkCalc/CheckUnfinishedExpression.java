@@ -1,4 +1,4 @@
-package case2;
+package checkCalc;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -7,11 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CheckDivisionByZero {
+public class CheckUnfinishedExpression {
     WebDriver driver;
 
     @Test
-    public void checkDivisionByZero() {
+    public void checkUnfinishedExpression() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_89.0.4389.23");
 
         driver = new ChromeDriver();
@@ -22,18 +22,18 @@ public class CheckDivisionByZero {
         editingViewPort.sendKeys("калькулятор");
         editingViewPort.sendKeys(Keys.ENTER);
 
-        driver.findElement(By.cssSelector("div[jsname=\"abcgof\"]")).click();//6
-        driver.findElement(By.cssSelector("div[aria-label=\"деление\"]")).click();
-        driver.findElement(By.cssSelector("div[jsname=\"bkEvMb\"]")).click();//0
+        driver.findElement(By.cssSelector("div[jsname=\"aN1RFf\"]")).click();//5
         driver.findElement(By.cssSelector("div[aria-label=\"равно\"]")).click();
 
+
+
         String note = driver.findElement(By.cssSelector("span[jsname=\"ubtiRe\"]")).getText();
-        assert note.equals("6 ÷ 0 =");
+        assert ("sin() =").equals(note);
 
         String result = driver.findElement(By.cssSelector("span[jsname=\"VssY5c\"]")).getText();
-        assert "Infinity".equals(result);
+        assert "Error".equals(result);
 
-        driver.quit();
+        driver.close();
     }
 
 }
