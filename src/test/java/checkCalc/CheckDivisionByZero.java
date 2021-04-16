@@ -28,7 +28,7 @@ public class CheckDivisionByZero {
         driver.findElement(By.cssSelector("div[aria-label=\"равно\"]")).click();
 
         String note = driver.findElement(By.cssSelector("span[jsname=\"ubtiRe\"]")).getText();
-        assert note.equals("6 ÷ 0 =");
+        assert ("6 ÷ 0 =").equals(note);
 
         String result = driver.findElement(By.cssSelector("span[jsname=\"VssY5c\"]")).getText();
         assert "Infinity".equals(result);

@@ -45,7 +45,7 @@ public class CheckArithmeticOperations {
 
 
          String note = driver.findElement(By.cssSelector("span[jsname=\"ubtiRe\"]")).getText();
-         assert note.equals("(1 + 2) × 3 - 40 ÷ 5 =");
+         assert ("(1 + 2) × 3 - 40 ÷ 5 =").equals(note);
 
          String result = driver.findElement(By.cssSelector("span[jsname=\"VssY5c\"]")).getText();
          assert "1".equals(result);
