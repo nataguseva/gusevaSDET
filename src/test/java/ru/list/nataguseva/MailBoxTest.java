@@ -56,8 +56,7 @@ public class MailBoxTest {
         login = loginPage.getLogin();
         password = loginPage.getPassword();
         loginPage.authorize(login, password);
-       // wait.until(ExpectedConditions.urlContains("prifile"));
-        //Assert.assertTrue(driver.getCurrentUrl().contains("profile"));
+     
 
         /**
          * позорный костыль
