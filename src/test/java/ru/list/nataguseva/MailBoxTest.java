@@ -56,7 +56,7 @@ public class MailBoxTest {
         login = loginPage.getLogin();
         password = loginPage.getPassword();
         loginPage.authorize(login, password);
-     
+
 
         /**
          * позорный костыль
@@ -65,6 +65,8 @@ public class MailBoxTest {
 
         profilePage = new ProfilePage(driver);
         profilePage.clickAccountBtn();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href=\"https://mail.yandex.ru\"]")));
+        profilePage.clickMailBtn();
 
 
         /*

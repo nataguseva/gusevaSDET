@@ -12,6 +12,9 @@ public class ProfilePage {
     @FindBy(xpath = "//div[@_uid='1409967518']")
     WebElement accountBtn;
 
+    @FindBy(xpath = "//a[@href=\"https://mail.yandex.ru\"]")
+    WebElement mailBtn;
+
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -19,6 +22,9 @@ public class ProfilePage {
 
     public void clickAccountBtn() {
         accountBtn.click();
+    }
+    public void clickMailBtn() {
+        mailBtn.click();
     }
 }
 
