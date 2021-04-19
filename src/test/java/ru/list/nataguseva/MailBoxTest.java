@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.IExpectedExceptionsHolder;
 import ru.list.nataguseva.pages.BrowserStartPage;
 import ru.list.nataguseva.pages.LoginPage;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import ru.list.nataguseva.pages.MailBoxPage;
 import ru.list.nataguseva.pages.ProfilePage;
 
 
@@ -26,6 +28,7 @@ public class MailBoxTest {
     BrowserStartPage browserStartPage;
     LoginPage loginPage;
     ProfilePage profilePage;
+    //MailBoxPage mailboxPage;
 
 
 
@@ -36,7 +39,7 @@ public class MailBoxTest {
         //System.setProperty("webdriver.gecko.driver", ConfProperties.getProperty("geckodriver"));
         driver = new ChromeDriver();
         //driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String url = ConfProperties.getProperty("URL");
         driver.get(url);
 
@@ -46,7 +49,10 @@ public class MailBoxTest {
     public void mailBoxTest() {
         browserStartPage = new BrowserStartPage(driver);
         browserStartPage.clickMailBtn();
-        //wait.until(ExpectedConditions.titleIs("авторизация"));
+
+
+       // (new WebDriverWait(driver,5)).
+           //until(ExpectedConditions.urlContains("passport"));
 
         /**
          * позорный костыль
@@ -58,14 +64,8 @@ public class MailBoxTest {
         loginPage.authorize(login, password);
 
 
-        /**
-         * позорный костыль
-         */
-        driver.get("https://passport.yandex.ru/profile");
-
         profilePage = new ProfilePage(driver);
         profilePage.clickAccountBtn();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href=\"https://mail.yandex.ru\"]")));
         profilePage.clickMailBtn();
 
 

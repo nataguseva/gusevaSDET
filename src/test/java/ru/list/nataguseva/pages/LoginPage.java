@@ -10,15 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.list.nataguseva.ConfProperties;
 
-import java.time.Duration;
-import java.util.Objects;
 
 public class LoginPage {
 
     WebDriver driver;
-    public WebDriverWait wait;
-    private final String login  = ConfProperties.getProperty("login");
-    private final String password = ConfProperties.getProperty("password");
 
     public String loginFieldLocator = "//input[@data-t='field:input-login']";
     public String passwordFieldLocator = "//input[@data-t='field:input-passwd']";
@@ -42,46 +37,38 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getLogin() {
-        return login;
-    }
 
-    public String getPassword() {
-        return password;
-    }
-    /**
-    public String getLoginFieldLocator() {
-        return loginFieldLocator;
-    }
-
-    public String getPasswordFieldLocator() {
-        return passwordFieldLocator;
-    }
-*/
 
     public void setLogin(String login) {
-        wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(loginFieldLocator)));
+        (new WebDriverWait(driver, 4)).
+                until(loginField.isDisplayed();
         System.out.println(loginField.getTagName());
-        loginField.sendKeys(login);
+        loginField.sendKeys(login, Keys.ENTER);
 
     }
     public void clickSubmitBtn() {
+        (new WebDriverWait(driver, 4)).
+                until(ExpectedConditions.
+                        presenceOfElementLocated(By.xpath(submitBtnLocator)));
         submitBtn.click();
     }
 
     public void setPassword(String password) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordFieldLocator)));
+        (new WebDriverWait(driver, 4)).
+                until(ExpectedConditions.
+                        presenceOfElementLocated(By.xpath(passwordFieldLocator)));
         passwdField.sendKeys(password, Keys.ENTER);
     }
 
 
     public void authorize(String login, String password) {
         this.setLogin(login);
-        this.clickSubmitBtn();
+        (new WebDriverWait(driver, 6)).
+                until(ExpectedConditions.
+                        visibilityOfElementLocated(By.xpath(passwordFieldLocator)));
         this.setPassword(password);
-        this.clickSubmitBtn();
-       // wait.until(ExpectedConditions.urlContains(""))
+        (new WebDriverWait(driver, 4)).
+                until(ExpectedConditions.urlContains("profile"));
     }
 
 }
